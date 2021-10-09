@@ -5,6 +5,6 @@ export type data = {
 }
 
 export type render = {
-    description:data;
-    id:number
+    item:data;
+    onChange:(item:data) => void;
 }
