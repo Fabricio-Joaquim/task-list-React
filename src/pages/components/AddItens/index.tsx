@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import * as Component from './style'
+import Button from '../Button'
 type props = {
-    onFinish:(taskDiscription:string)=>void
+    onFinish:(taskDiscription:string)=>void,
+    children?: any
 }
 
 function AddItens({onFinish}:props) {
@@ -9,12 +11,12 @@ function AddItens({onFinish}:props) {
     const [Text,setText] = useState('')
     
     const KeyUp = (event:any) =>{
-        if(event.code === "Enter" && Text !== ''){
+        if((event.code === "Enter" || event.type==='click') && Text !== ''){
             onFinish(Text)
             setText('')
         }
-    }   
-   
+    }
+
     return (
         <Component.Container>
             <div className="imagem">
@@ -26,7 +28,8 @@ function AddItens({onFinish}:props) {
                 value={Text}
                 onChange={event=>setText(event.target.value)}
                 onKeyUp={KeyUp}
-            />  
+            />
+        <Button onClick={(event:HTMLButtonElement)=>KeyUp(event)}>Adicionar</Button>
         </Component.Container>
     )
 }

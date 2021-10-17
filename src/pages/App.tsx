@@ -4,7 +4,6 @@ import * as types from './types'
 import Itens from './components/Itens/RenderItens'
 import Base from '../Base'
 import AddItens from './components/AddItens'
-
 function App() {
   const [Data,setData] = useState<types.data[]>(Base)
   const addItens = (taskDiscription:string) => {
@@ -18,7 +17,7 @@ function App() {
 
   const changeStatus = (obj:types.data) =>{
     Data.map(item => item.id === obj.id ? item.status = !obj.status : '')
-    
+
   }
   return (
     <Component.Container>
@@ -26,7 +25,8 @@ function App() {
         <Component.Header>
           Listas de Tarefas
         </Component.Header>
-        <AddItens onFinish={addItens}/>
+        <AddItens onFinish={addItens}>
+        </AddItens>
           {Data.map((item)=>
             <div key={item.id}>
               <Itens item={item} onChange={changeStatus}/>
